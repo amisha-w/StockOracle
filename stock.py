@@ -11,6 +11,9 @@ from sklearn.model_selection import train_test_split
 #For Stock Data
 from iexfinance.stocks import Stock
 from iexfinance.stocks import get_historical_data
+import pandas_datareader
+import pandas as pd
+from pandas_datareader import data
 
 def getStocks(n):
     #Navigating to the Yahoo stock screener    
@@ -23,41 +26,47 @@ def getStocks(n):
     n += 1
     for i in range(1, n):
         ticker = driver.find_element_by_xpath('//*[@id="scr-res-table"]/div[1]/table/tbody/tr[  {}  ]/td[1]/a'.format(i))
-    stock_list.append(ticker.text)
-
+        stock_list.append(ticker.text)
+    driver.quit()
     #Using the stock list to predict the future price of the stock a specificed amount of days
     for i in stock_list:
         try:
             predictData(i, 5)
         except:
             print("Stock: " + i + " was not predicted")
+            #continue
+    # try:
+    #     predictData("WSR",5)
+    # except:
+
+    #     print("Stock: WSR was not predicted")
 
 
 def predictData(stock,days):
     start = datetime(2017, 1, 1)
     end = datetime.now()
     #Outputting the Historical data into a .csv for later use
-    df = get_historical_data(stock, start=start, end=end,output_format='pandas')
-    print(df)
-    
-    csv_name = ('Exports/' + stock + '_Export.csv')
-    
-    df.to_csv(csv_name)
-    df['prediction'] = df['close'].shift(-1)
-    df.dropna(inplace=True)
-    forecast_time = int(days)
-    X = np.array(df.drop(['prediction'], 1))
-    Y = np.array(df['prediction'])
-    X = preprocessing.scale(X)
-    X_prediction = X[-forecast_time:]
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.5)
+    #df = get_historical_data(stock, start,output_format='pandas')
+    df = data.get_data_yahoo(stock, start, end)
+    print(stock)
+    print(df.head(5))    
+    # csv_name = ('Exports/' + stock + '_Export.csv')    
+    # df.to_csv(csv_name)
+    # df['prediction'] = df['close'].shift(-1)
+    # df.dropna(inplace=True)
+    # forecast_time = int(days)
+    # X = np.array(df.drop(['prediction'], 1))
+    # Y = np.array(df['prediction'])
+    # X = preprocessing.scale(X)
+    # X_prediction = X[-forecast_time:]
+    # X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.5)
 
-    #Performing the Regression on the training data
-    clf = LinearRegression()
-    clf.fit(X_train, Y_train)
-    prediction = (clf.predict(X_prediction))
+    # #Performing the Regression on the training data
+    # clf = LinearRegression()
+    # clf.fit(X_train, Y_train)
+    # prediction = (clf.predict(X_prediction))
 
-    print(prediction)
+    # print(prediction)
 
 
-getStocks(200)
+getStocks(5)
