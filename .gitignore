@@ -5,6 +5,12 @@
 debug.log
 ### Python ###
 
+
+
+.env
+.flaskenv
+*Movie-Bot-5224d8138913.json
+
 chromedriver
 chromedriver.exe
 venv
