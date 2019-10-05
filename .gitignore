@@ -3,6 +3,9 @@
 # Edit at https://www.gitignore.io/?templates=python
 
 ### Python ###
+.env
+.flaskenv
+*Movie-Bot-5224d8138913.json
 chromedriver
 chromedriver.exe
 !chromedriver.exe
