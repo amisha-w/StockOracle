@@ -4,6 +4,7 @@ import dialogflow
 import requests
 import json
 import pusher
+from LR import predictData
 
 app = Flask(__name__)
 
@@ -26,6 +27,12 @@ def get_movie_detail():
     print("inside get movie details")
     try:
         ticker = data['queryResult']['parameters']['tickers']
+        print("ticker is:",ticker)
+        result = predictData(ticker,2)
+        resultDict = {'index':result}
+        #resultDict = json.dumps(resultDict)
+        print("resultdict:",resultDict)
+        
         '''api_key = os.getenv('OMDB_API_KEY')
         
         movie_detail = requests.post('http://www.omdbapi.com/?t={0}&apikey={1}'.format(movie, api_key)).content
@@ -37,9 +44,14 @@ def get_movie_detail():
             Actors: {2}
             Plot: {3}
         """.format(movie_detail['Title'], movie_detail['Released'], movie_detail['Actors'], movie_detail['Plot'])'''
-        response = """
+        '''response = """
             
-        """
+        """ '''
+        response = """
+            {0}
+        """.format(resultDict['index'])
+        print("this is respons:",response)
+        #response = result
     except:
         response = "Could not get movie detail at the moment, please try again"
     
@@ -58,6 +70,8 @@ def detect_intent_texts(project_id, session_id, text, language_code):
         response = session_client.detect_intent(
             session=session, query_input=query_input)
         print("intent matched")
+        print(response.query_result.fulfillment_text
+)
         return response.query_result.fulfillment_text
 
 @app.route('/send_message', methods=['POST'])
@@ -68,8 +82,10 @@ def send_message():
         socketId = ''
         
     message = request.form['message']
+    print(message)
     project_id = os.getenv('DIALOGFLOW_PROJECT_ID')
     fulfillment_text = detect_intent_texts(project_id, "unique", message, 'en')
+    print(fulfillment_text)
     response_text = { "message":  fulfillment_text }
 
     '''pusher_client.trigger(
