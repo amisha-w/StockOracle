@@ -29,17 +29,11 @@ def getStocks(n):
         stock_list.append(ticker.text)
     driver.quit()
     #Using the stock list to predict the future price of the stock a specificed amount of days
-    for i in stock_list:
-        try:
-            predictData(i, 5)
-        except:
-            print("Stock: " + i + " was not predicted")
-            #continue
-    # try:
-    #     predictData("WSR",5)
-    # except:
-
-    #     print("Stock: WSR was not predicted")
+    for i in stock_list:        
+        predictData(i, 2)
+     
+       
+  
 
 
 def predictData(stock,days):
@@ -49,24 +43,25 @@ def predictData(stock,days):
     #df = get_historical_data(stock, start,output_format='pandas')
     df = data.get_data_yahoo(stock, start, end)
     print(stock)
-    print(df.head(5))    
+    print("before",df.head(1))    
     # csv_name = ('Exports/' + stock + '_Export.csv')    
     # df.to_csv(csv_name)
-    # df['prediction'] = df['close'].shift(-1)
-    # df.dropna(inplace=True)
-    # forecast_time = int(days)
-    # X = np.array(df.drop(['prediction'], 1))
-    # Y = np.array(df['prediction'])
-    # X = preprocessing.scale(X)
-    # X_prediction = X[-forecast_time:]
-    # X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.5)
 
-    # #Performing the Regression on the training data
-    # clf = LinearRegression()
-    # clf.fit(X_train, Y_train)
-    # prediction = (clf.predict(X_prediction))
+    df['prediction'] = df['Close'].shift(-1)
+    print("after",df.head(1))
+    df.dropna(inplace=True)
+    forecast_time = int(days)
+    X = np.array(df.drop(['prediction'], 1))
+    Y = np.array(df['prediction'])
+    X = preprocessing.scale(X)
+    X_prediction = X[-forecast_time:]
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.5)
 
-    # print(prediction)
+    #Performing the Regression on the training data
+    clf = LinearRegression()
+    clf.fit(X_train, Y_train)
+    prediction = (clf.predict(X_prediction))
+    print("Prediction",prediction)
 
 
 getStocks(5)
