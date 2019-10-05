@@ -15,29 +15,30 @@ import pandas_datareader
 import pandas as pd
 from pandas_datareader import data
 
+
 def getStocks(n):
     #Navigating to the Yahoo stock screener    
-    chrome_driver_path = './chromedriver'
-    driver = webdriver.Chrome(chrome_driver_path)
-    url = 'https://finance.yahoo.com/screener/predefined/aggressive_small_caps?offset=0&count=202'
-    driver.get(url)
+    # chrome_driver_path = './chromedriver'
+    # driver = webdriver.Chrome(chrome_driver_path)
+    # url = 'https://finance.yahoo.com/screener/predefined/aggressive_small_caps?offset=0&count=202'
+    # driver.get(url)
 
-    stock_list = []
-    n += 1
-    for i in range(1, n):
-        ticker = driver.find_element_by_xpath('//*[@id="scr-res-table"]/div[1]/table/tbody/tr[  {}  ]/td[1]/a'.format(i))
-        stock_list.append(ticker.text)
-    driver.quit()
+    # stock_list = []
+    # n += 1
+    # for i in range(1, n):
+    #     ticker = driver.find_element_by_xpath('//*[@id="scr-res-table"]/div[1]/table/tbody/tr[  {}  ]/td[1]/a'.format(i))
+    #     stock_list.append(ticker.text)
+    # driver.quit()
     #Using the stock list to predict the future price of the stock a specificed amount of days
-    for i in stock_list:        
-        predictData(i, 2)
+    # for i in stock_list:        
+    #     predictData(i, 2)
      
-       
+    predictData('GOOG',2)
   
 
 
 def predictData(stock,days):
-    start = datetime(2017, 1, 1)
+    start = datetime(2016, 1, 1)
     end = datetime.now()
     #Outputting the Historical data into a .csv for later use
     #df = get_historical_data(stock, start,output_format='pandas')
@@ -56,12 +57,14 @@ def predictData(stock,days):
     X = preprocessing.scale(X)
     X_prediction = X[-forecast_time:]
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.5)
-
+    print(X_train)
     #Performing the Regression on the training data
     clf = LinearRegression()
     clf.fit(X_train, Y_train)
     prediction = (clf.predict(X_prediction))
     print("Prediction",prediction)
+    print("hejfhiodhviodjivd")
+    print(X_prediction)
 
 
 getStocks(5)

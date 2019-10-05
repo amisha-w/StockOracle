@@ -2,8 +2,15 @@
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
 
+debug.log
 ### Python ###
-chromedriver.exe
+
+
+.env
+.flaskenv
+*Movie-Bot-5224d8138913.json
+
+chromedriver
 chromedriver.exe
 venv
 venv/
