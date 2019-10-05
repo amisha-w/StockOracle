@@ -16,12 +16,16 @@ import pandas_datareader
 import pandas as pd
 from pandas_datareader import data
 from sklearn.svm import SVR
+
 from yahoo_fin import stock_info as si
 
+import json
 
 
-def getStocks(n): 
-     predictData('CLF',2)
+
+
+'''def getStocks(n): 
+     predictData('CLF',2)'''
   
 
 
@@ -36,7 +40,7 @@ def predictData(stock,days):
     # Take a look at the new data 
     #print(df.head())
     # A variable for predicting 'n' days out into the future
-    forecast_out = 5 #'n=30' days
+    forecast_out = int(days) #'n=30' days
     #Create another column (the target ) shifted 'n' units up
     df['Prediction'] = df[['Adj Close']].shift(-forecast_out)
     #print the new data set
@@ -75,8 +79,20 @@ def predictData(stock,days):
     #print(x_forecast)
     # Print linear regression model predictions for the next '30' days
     lr_prediction = lr.predict(x_forecast)
+    print(lr_prediction[0])
+    predictResponse = "The predicted price for upcoming {} days is:".format(days)
+    for elements in lr_prediction:
+        predictResponse += "<br> ${0:.3f} <br>".format(elements)
+        
+    lr_confidence = lr_confidence *100
+    predictResponse += "<br> I'm {0:.3f}% sure about the prices".format(lr_confidence)
+    print(predictResponse)
+        
+    
     #print("lr ans")
-    print(lr_prediction)
+    
+    return (predictResponse)
+   
     # Print support vector regressor model predictions for the next '30' days
     # svm_prediction = svr_rbf.predict(x_forecast)
     # print("svm ans")
@@ -89,8 +105,8 @@ def predictData(stock,days):
 
 
  
-
-getStocks(5)
+predictData('CLF',2)
+#getStocks(5)
 
 
 
