@@ -33,7 +33,7 @@ def getStocks(n):
     # for i in stock_list:        
     #     predictData(i, 2)
      
-    predictData('GOOG',2)
+    predictData('AAPL',2)
   
 
 
