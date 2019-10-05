@@ -2,10 +2,11 @@
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
 
+debug.log
 ### Python ###
+
 chromedriver
 chromedriver.exe
-!chromedriver.exe
 venv
 venv/
 .venv
