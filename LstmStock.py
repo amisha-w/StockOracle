@@ -38,18 +38,19 @@ def predictData(stock,days):
     # df.to_csv(csv_name)
     
     #creating dataframe
-    data1 = df.sort_index(ascending=True, axis=0)
-   # new_data = pd.DataFrame(index=range(0,len(df)),columns=['Date', 'Close'])
-    new_data=df.drop(df.columns.difference(['Date','Close']), 1, inplace=True)
-    print(new_data['Date'])
-    # for i in range(0,len(data1)):
-    #     new_data['Date'][i] = data1['Date'][i]
-    #     new_data['Close'][i] = data1['Close'][i]
+    data=df.sort_index(ascending=True, axis=0)
+    new_data = pd.DataFrame(index=range(0,len(df)),columns=['Close'])
+    #new_data=df.drop(df.columns.difference(['Date','Close']), 1, inplace=True)
+    
+    #print(type(new_data))
+    #print(new_data.columns.tolist())
+    for i in range(0,len(df)):
+        #new_data['Date'][i] = data1['Date'][i]
+        new_data['Close'][i] = data['Close'][i]
 
     #setting index
-    new_data.index = new_data.Date
-    new_data.drop('Date', axis=1, inplace=True)
-
+    # new_data.index = new_data.Date
+    # new_data.drop('Date', axis=1, inplace=True)
     #creating train and test sets
     dataset = new_data.values
     k=int(0.75*len(new_data))
@@ -80,23 +81,23 @@ def predictData(stock,days):
     inputs = inputs.reshape(-1,1)
     inputs  = scaler.transform(inputs)
 
-  
-    df['prediction'] = df['Close'].shift(-1)
-    print("after",df.head(1))
-    df.dropna(inplace=True)
+
+    
     forecast_time = int(days)
-    X = np.array(df['Close'])
+    X_prediction = np.array(df.drop(df.columns.difference(['Close']),1))[-forecast_time:]
+    # X = np.array(df['Close'])
   
-    X_prediction = X[-forecast_time:]
+    # X_prediction = X[-forecast_time:]
 
-    #X_test = np.array(X_test)
+    # X_prediction = np.array(X_prediction)
 
-    print('Shape: ',X.prediction.shape)
+    print('Shape: ',X_prediction.shape)
     X_prediction = np.reshape(X_prediction, (X_prediction.shape[0],X_prediction.shape[1],1))
     closing_price = model.predict(X_prediction)
+    print(closing_price)
     closing_price = scaler.inverse_transform(closing_price)
     print(closing_price)
 
     
 
-predictData('GOOG',2)
+predictData('CLF',2)
