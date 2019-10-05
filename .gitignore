@@ -3,6 +3,8 @@
 # Edit at https://www.gitignore.io/?templates=python
 
 ### Python ###
+chromedriver
+chromedrive.exe
 venv
 .venv
 .vscode
