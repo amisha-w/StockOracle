@@ -16,7 +16,11 @@ import pandas_datareader
 import pandas as pd
 from pandas_datareader import data
 from sklearn.svm import SVR
+
+from yahoo_fin import stock_info as si
+
 import json
+
 
 
 
@@ -93,6 +97,11 @@ def predictData(stock,days):
     # svm_prediction = svr_rbf.predict(x_forecast)
     # print("svm ans")
     # print(svm_prediction)
+    val=si.get_live_price(stock)
+    print("Current Price of {} is {}".format(stock,val))
+    
+   
+
 
 
  
