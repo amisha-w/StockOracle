@@ -4,8 +4,10 @@
 
 ### Python ###
 chromedriver
-chromedrive.exe
+chromedriver.exe
+!chromedriver.exe
 venv
+venv/
 .venv
 .vscode
 # Byte-compiled / optimized / DLL files
