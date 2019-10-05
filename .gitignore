@@ -3,6 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=python
 
 ### Python ###
+
 .venv
 .vscode
 # Byte-compiled / optimized / DLL files
