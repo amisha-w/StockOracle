@@ -17,8 +17,12 @@ app = Flask(__name__)
     ssl=True)'''
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def splash():
+    return render_template('splash.html')
+@app.route('/index')
+def index(methods=['GET','POST']):
+    
+        return render_template('index.html')
 
 @app.route('/get_movie_detail', methods=['POST'])
 def get_movie_detail():
@@ -53,7 +57,7 @@ def get_movie_detail():
         print("this is respons:",response)
         #response = result
     except:
-        response = "Could not get movie detail at the moment, please try again"
+        response = "Could not get any details at the moment, please try again"
     
     reply = { "fulfillmentText": response }
     
