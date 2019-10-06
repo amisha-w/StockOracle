@@ -61,9 +61,11 @@
  
 
   </div>
-  <form action="/index" method='POST'>
-    <input type="submit" value='click' id= "bt">
-  </form>
+ <!-- <form action="/index">
+    <button name="btn" type="submit" onclick=click() style="z-index:-1 position:relative">Click Me!</button>
+  </form>-->
+  <a href="{{url_for('index')}}" target="_self" class="fa fa-yahoo fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
+
 
   <footer class="page-footer deep-purple darken-3" style="text-align: center;">
     <div class="footer-copyright deep-purple darken-4">
@@ -76,9 +78,10 @@
 
 
 <script type="text/javascript">
-  document.getElementById('bt').onclick = function() {
-    alert("button was clicked");
- }​;
+  
+  function click(){
+    window.location.href = "./index.html";
+  }
   var _CONTENT = [ 
   "What is the current stock price of Google?", 
   "Should I be investing in CLF?", 
