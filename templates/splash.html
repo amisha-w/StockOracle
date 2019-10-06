@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="./splash.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto&amp;subset=latin,devanagari">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+</head>
+
+
+
+<body class="welcome">
+  <span id="splash-overlay" class="splash"></span>
+  <span id="welcome" class="z-depth-4"></span>
+ 
+  <header class="navbar-fixed"> 
+    <nav class="row deep-purple darken-3">
+      <div class="col s12">
+        <ul class="right">
+          <li class="right">
+            <a href="https://in.finance.yahoo.com/most-active/" target="_blank" class="fa fa-yahoo fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div style="width: 100%; overflow: hidden;">
+     <main class="valign-wrapper" style="width: 750px; float: left;">
+    <span class="container grey-text text-lighten-1 ">
+
+      <p class="flow-text">Welcome to</p>
+      <h1 class="title grey-text text-lighten-3">StockOracle</h1>
+
+      <blockquote class="flow-text">Foresee the stock prices and invest smartly</blockquote>
+      <div id="container">
+        <div id="text"></div><div id="cursor"></div>
+      </div>
+      
+
+    </span>
+  </main>
+    <div style="margin-left: 800px;"><img src="splash.jpeg" style="width: 600px; height: 550px;"> </div>
+    
+
+
+ 
+
+  </div>
+
+  <footer class="page-footer deep-purple darken-3" style="text-align: center;">
+    <div class="footer-copyright deep-purple darken-4">
+      <div class="container">
+        <time datetime="{{ site.time | date: '%Y' }}">&copy; 2019 TeamWhyNot</time>
+      </div>
+    </div>
+  </footer>
+</body>
+
+
+<script type="text/javascript">
+  var _CONTENT = [ 
+  "What is the current stock price of Google?", 
+  "Should I be investing in CLF?", 
+  "What are the predictions of Apple stock in coming days?", 
+  "Is MSFT a safe market currently?"
+];
+
+// Current sentence being processed
+var _PART = 0;
+
+// Character number of the current sentence being processed 
+var _PART_INDEX = 0;
+
+// Holds the handle returned from setInterval
+var _INTERVAL_VAL;
+
+// Element that holds the text
+var _ELEMENT = document.querySelector("#text");
+
+// Cursor element 
+var _CURSOR = document.querySelector("#cursor");
+
+// Implements typing effect
+function Type() { 
+  // Get substring with 1 characater added
+  var text =  _CONTENT[_PART].substring(0, _PART_INDEX + 1);
+  _ELEMENT.innerHTML = text;
+  _PART_INDEX++;
+
+  // If full sentence has been displayed then start to delete the sentence after some time
+  if(text === _CONTENT[_PART]) {
+    // Hide the cursor
+    _CURSOR.style.display = 'none';
+
+    clearInterval(_INTERVAL_VAL);
+    setTimeout(function() {
+      _INTERVAL_VAL = setInterval(Delete, 50);
+    }, 1000);
+  }
+}
+
+// Implements deleting effect
+function Delete() {
+  // Get substring with 1 characater deleted
+  var text =  _CONTENT[_PART].substring(0, _PART_INDEX - 1);
+  _ELEMENT.innerHTML = text;
+  _PART_INDEX--;
+
+  // If sentence has been deleted then start to display the next sentence
+  if(text === '') {
+    clearInterval(_INTERVAL_VAL);
+
+    // If current sentence was last then display the first one, else move to the next
+    if(_PART == (_CONTENT.length - 1))
+      _PART = 0;
+    else
+      _PART++;
+    
+    _PART_INDEX = 0;
+
+    // Start to display the next sentence after some time
+    setTimeout(function() {
+      _CURSOR.style.display = 'inline-block';
+      _INTERVAL_VAL = setInterval(Type, 100);
+    }, 200);
+  }
+}
+
+// Start the typing effect on load
+_INTERVAL_VAL = setInterval(Type, 100);
+</script>
+</html>
