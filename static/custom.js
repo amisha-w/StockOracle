@@ -7,7 +7,8 @@ function submit_message(message) {
             <div class="chat-message col-md-5  bot-message">
                 ${data.message}
             </div>
-      `)
+      `).animate({ scrollTop: $('.chat-container').prop("scrollHeight") }, 500);
+
         // remove the loading indicator
         $("#loading").remove();
     }
@@ -26,14 +27,16 @@ $('#target').on('submit', function (e) {
         <div class="chat-message col-md-5 offset-md-7 human-message">
             ${input_message}
         </div>
-    `)
+    `).animate({ scrollTop: $('.chat-container').prop("scrollHeight") }, 500);
+
 
     // loading
     $('.chat-container').append(`
         <div class="chat-message text-center col-md-2  bot-message" id="loading">
             <b>...</b>
         </div>
-    `)
+    `).animate({ scrollTop: $('.chat-container').prop("scrollHeight") }, 500);
+
 
     // clear the text input
     $('#input_message').val('')
@@ -58,12 +61,14 @@ channel.bind('new_message', function (data) {
     $('.chat-container').append(`
             ${data.human_message}
         </div>
-    `)
+    `).animate({ scrollTop: $('.chat-container').prop("scrollHeight") }, 500);
+
 
     // Append bot message
     $('.chat-container').append(`
         <div class="chat-message col-md-5  bot-message">
             ${data.bot_message}
         </div>
-    `)
+    `).animate({ scrollTop: $('.chat-container').prop("scrollHeight") }, 500);
+
 })
