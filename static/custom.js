@@ -1,37 +1,36 @@
 function submit_message(message) {
-    $.post( "/send_message", {message: message, socketId: pusher.connection.socket_id}, handle_response);
+    $.post("/send_message", { message: message, socketId: pusher.connection.socket_id }, handle_response);
 
     function handle_response(data) {
-      // append the bot repsonse to the div
-      $('.chat-container').append(`
-            <div class="chat-message  col-md-5 bot-message">
+        // append the bot repsonse to the div
+        $('.chat-container').append(`
+            <div class="chat-message col-md-5  bot-message">
                 ${data.message}
             </div>
       `)
-
-      // remove the loading indicator
-      $( "#loading" ).remove();
+        // remove the loading indicator
+        $("#loading").remove();
     }
 }
 
 
-$('#target').on('submit', function(e){
+$('#target').on('submit', function (e) {
     e.preventDefault();
     const input_message = $('#input_message').val()
     // return if the user does not enter any text
     if (!input_message) {
-      return
+        return
     }
 
     $('.chat-container').append(`
-        <div class="chat-message offset-md-7 col-md-5 human-message">
+        <div class="chat-message col-md-5 offset-md-7 human-message">
             ${input_message}
         </div>
     `)
 
     // loading
     $('.chat-container').append(`
-        <div class="chat-message text-center col-md-1 bot-message" id="loading">
+        <div class="chat-message text-center col-md-2  bot-message" id="loading">
             <b>...</b>
         </div>
     `)
@@ -52,12 +51,11 @@ const pusher = new Pusher('fbf2c1142db8a54b3a20', {
 // Subscribe to movie_bot channel
 const channel = pusher.subscribe('movie_bot');
 
-  // bind new_message event to movie_bot channel
-  channel.bind('new_message', function(data) {
+// bind new_message event to movie_bot channel
+channel.bind('new_message', function (data) {
 
-   // Append human message
+    // Append human message
     $('.chat-container').append(`
-        <div class="chat-message col-md-5 offset-md-7 human-message">
             ${data.human_message}
         </div>
     `)
@@ -68,4 +66,4 @@ const channel = pusher.subscribe('movie_bot');
             ${data.bot_message}
         </div>
     `)
-});
+})

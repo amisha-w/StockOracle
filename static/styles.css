@@ -1,20 +1,33 @@
     /* /static/style.css */
-
+    @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
     body,html {
         height: 100%;
-    }
-
-    .chat-container {
-        margin: auto;
-        /*width: 100%;*/
-        overflow: scroll;
-       -webkit-scrollbar { width: 0 !important }
-        /*padding: px;*/
     }
 
     ::-webkit-scrollbar { 
     display: none; 
 }
+
+.image{
+  height: 80px;
+  border-radius: 40%;
+  width: 80px;
+}
+
+.jumbo{
+  font-family: Poppins, serif;
+  font-size: 50px;
+  margin-top: 30px;
+  color: black;
+  /*margin-left: 50%;*/
+  display: inline-flex;
+}
+
+    .chat-container {
+        margin: 0px;
+        padding: px;
+        max-height: 80vh;
+    }
 
     .chat-message {
       padding: 6px;
@@ -23,28 +36,45 @@
     }
 
     .bot-message {
-         border: 1px solid;
+        /*border: 1px solid;*/
   padding: 10px;
-  box-shadow: 5px 10px;
-  /*float: left;*/
-    /*}*/
+        color: white;
+        background-color: #6d1880;
+        -webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+-moz-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+        /*box-shadow: 5px 10px #888888;*/
+    }
 
     .human-message {
-        border: 1px solid;
+         /*border: 1px solid;*/
   padding: 10px;
-  box-shadow: 5px 10px #888888;
-  /*float: right;*/
+        color: black;
+        background-color: #e6dce8;
+        -webkit-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+-moz-box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.15);
+        /*margin: 13px 1px;*/
+        /*box-shadow: 5px 10px;*/
+        /*margin-right: 0px;*/
+
     }
 
     .input {
       width: 100%;
+      border-bottom: solid 2px black;
       margin: 35px 0px;
       height: 60px;
       border: 1px solid rosybrown;
+      font-size:18px;
+  padding:10px 10px 10px 5px;
+
+  /*display:block;*/
+  /*width:300px;*/
+  border:none;
+  border-bottom:1px solid #757575;
       /*border-radius: 3px;*/
-      padding:10px 10px 10px 5px;
-      border:none;
-  border-bottom:2px solid #757575;
     }
 
-input:focus     { outline:none; }
+    input:focus     { outline:none; 
+      border-bottom:1px solid #5442f5;}
