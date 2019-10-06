@@ -7,14 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./styles.css">
-  <title>Movie Bot</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}">
+  <title>Stock</title>
 </head>
 
 <body>
 
   <div style="text-align: center;">
-    <div class="jumbo">StockOracle</div><img src="./stock.png" class="image">
+    <div class="jumbo">StockOracle</div><img src="{{url_for('static',filename='stock.png')}}" class="image">
     <hr>
   </div>
   <div class="container h-100">
@@ -35,7 +35,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-  <script src="./custom.js"></script>
+  <script src="{{url_for('static',filename='custom.js')}}"></script>
 </body>
 
 </html>

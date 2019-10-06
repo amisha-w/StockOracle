@@ -2,7 +2,7 @@
 <html>
 <head>
   <title></title>
-  <link rel="stylesheet" type="text/css" href="./splash.css">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='splash.css')}}">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Architects+Daughter|Roboto&amp;subset=latin,devanagari">
@@ -41,22 +41,34 @@
       <div id="container">
         <div id="text"></div><div id="cursor"></div>
       </div>
-      
+      <br>
+       
+     
 
     </span>
-  </main>
-    <div style="margin-left: 800px;"><img src="splash.jpeg" style="width: 600px; height: 550px;"> </div>
     
+  </main>
+
+ 
+    <div style="margin-left: 800px;"><a href="{{url_for('index')}}"><img src="{{url_for('static',filename='splash.jpeg')}}" style="width: 600px; height: 550px;"></a>
+    
+    </div>
+    
+    
+
 
 
  
 
   </div>
+  <form action="/index" method='POST'>
+    <input type="submit" value='click' id= "bt">
+  </form>
 
   <footer class="page-footer deep-purple darken-3" style="text-align: center;">
     <div class="footer-copyright deep-purple darken-4">
       <div class="container">
-        <time datetime="{{ site.time | date: '%Y' }}">&copy; 2019 TeamWhyNot</time>
+        <time>&copy; 2019 TeamWhyNot</time>
       </div>
     </div>
   </footer>
@@ -64,6 +76,9 @@
 
 
 <script type="text/javascript">
+  document.getElementById('bt').onclick = function() {
+    alert("button was clicked");
+ }​;
   var _CONTENT = [ 
   "What is the current stock price of Google?", 
   "Should I be investing in CLF?", 
