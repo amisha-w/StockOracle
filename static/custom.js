@@ -1,55 +1,16 @@
-var $messages = $('.messages-content'),
-    d, h, m,
-    i = 0;
-
-function updateScrollbar() {
-  $messages.mCustomScrollbar("update").mCustomScrollbar('scrollTo', 'bottom', {
-    scrollInertia: 10,
-    timeout: 0
-  });
-}
-
-
-// function insertMessage() {
-//   msg = $('.message-input').val();
-//   if ($.trim(msg) == '') {
-//     return false;
-//   }
-//   $('<div class="message message-personal">' + msg + '</div>').appendTo($('.mCSB_container')).addClass('new');
-//   // setDate();
-//   $('.message-input').val(null);
-//   updateScrollbar();
-// }
-
-// $('.message-submit').click(function() {
-//   insertMessage();
-// });
-
-// $(window).on('keydown', function(e) {
-//   if (e.which == 13) {
-//     insertMessage();
-//     return false;
-//   }
-// })
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 function submit_message(message) {
     $.post( "/send_message", {message: message, socketId: pusher.connection.socket_id}, handle_response);
 
     function handle_response(data) {
       // append the bot repsonse to the div
-      // $('.chat-container').append(`
-      //       <div class="chat-message col-md-5 offset-md-7 bot-message">
-      //           ${data.message}
-      //       </div>
-      // `)
-
-      $(`<div class="message loading new"><figure class="avatar"><img src="http://algom.x10host.com/chat/img/icon-oracle.gif" /></figure><span></span> ${data.message} </div>`).appendTo($('.mCSB_container'));
-        updateScrollbar();
+      $('.chat-container').append(`
+            <div class="chat-message  col-md-5 bot-message">
+                ${data.message}
+            </div>
+      `)
 
       // remove the loading indicator
-      // $( "#loading" ).remove();
+      $( "#loading" ).remove();
     }
 }
 
@@ -62,22 +23,20 @@ $('#target').on('submit', function(e){
       return
     }
 
-    $('<div class="message message-personal">' + input_message + '</div>').appendTo($('.mCSB_container')).addClass('new');
-      updateScrollbar();
-    // $('.chat-container').append(`
-    //     <div class="chat-message col-md-5 human-message">
-    //         ${input_message}
-    //     </div>
-    // `)
+    $('.chat-container').append(`
+        <div class="chat-message offset-md-7 col-md-5 human-message">
+            ${input_message}
+        </div>
+    `)
 
-    // loading 
-    // $('.chat-container').append(`
-    //     <div class="chat-message text-center col-md-2 offset-md-10 bot-message" id="loading">
-    //         <b>...</b>
-    //     </div>
-    // `)
+    // loading
+    $('.chat-container').append(`
+        <div class="chat-message text-center col-md-1 bot-message" id="loading">
+            <b>...</b>
+        </div>
+    `)
 
-    // clear the text input 
+    // clear the text input
     $('#input_message').val('')
 
     // send the message
@@ -85,27 +44,28 @@ $('#target').on('submit', function(e){
 });
 
 // Initialize Pusher
-// const pusher = new Pusher('fbf2c1142db8a54b3a20', {
-//     cluster: 'ap2',
-//     encrypted: true
-// });
+const pusher = new Pusher('fbf2c1142db8a54b3a20', {
+    cluster: 'ap2',
+    encrypted: true
+});
 
 // Subscribe to movie_bot channel
-// const channel = pusher.subscribe('movie_bot');
+const channel = pusher.subscribe('movie_bot');
+
   // bind new_message event to movie_bot channel
-//   channel.bind('new_message', function(data) {
+  channel.bind('new_message', function(data) {
 
-//    // Append human message
-//     $('.chat-container').append(`
-//         <div class="chat-message col-md-5 human-message">
-//             ${data.human_message}
-//         </div>
-//     `)
+   // Append human message
+    $('.chat-container').append(`
+        <div class="chat-message col-md-5 offset-md-7 human-message">
+            ${data.human_message}
+        </div>
+    `)
 
-//     // Append bot message
-//     $('.chat-container').append(`
-//         <div class="chat-message col-md-5 offset-md-7 bot-message">
-//             ${data.bot_message}
-//         </div>
-//     `)
-// });
+    // Append bot message
+    $('.chat-container').append(`
+        <div class="chat-message col-md-5  bot-message">
+            ${data.bot_message}
+        </div>
+    `)
+});
