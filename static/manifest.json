@@ -1,0 +1,19 @@
+{
+    "name":"StockOracle",
+    "short_name":"SO",
+    "start_url":"templates/splash.html",
+    "display":"standalone",
+    "background_color":"#FFE9D2",
+    "theme_color":"#FFE1C4",
+    "orientation":"portrait-primary",
+    "icons":[
+        {
+
+        
+        "src":"/static/stock.png",
+        "type":"image/png",
+        "sizes":"72x44"
+        }
+    ]
+
+}
