@@ -19,10 +19,11 @@ app = Flask(__name__)
 @app.route('/')
 def splash():
     return render_template('splash.html')
+
 @app.route('/index')
-def index(methods=['GET','POST']):
+def index():
     
-        return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/get_movie_detail', methods=['POST'])
 def get_movie_detail():
