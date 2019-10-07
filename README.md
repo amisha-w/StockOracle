@@ -67,7 +67,8 @@ This project is a part was done under `under 24-hours` from scratch with no prep
 ## Contributors
 
 - [Gayatri Srinivasan](https://github.com/gayatri-01)
-- [@Amisha Waghela](https://github.com/amisha-w)
+- [Amisha Waghela](https://github.com/amisha-w)
+- [Rahul Mistry](https://github.com/rahulmistry33)
 
 -----------------------------------------------
 
