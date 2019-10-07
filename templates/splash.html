@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>StockBot</title>
+  <link rel="manifest" href="{{url_for('static',filename='manifest.json')}}">
   <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='splash.css')}}">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -9,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  
 </head>
 
 
@@ -17,21 +19,10 @@
   <span id="splash-overlay" class="splash"></span>
   <span id="welcome" class="z-depth-4"></span>
  
-  <header class="navbar-fixed"> 
-    <nav class="row deep-purple darken-3">
-      <div class="col s12">
-        <ul class="right">
-          <li class="right">
-            <a href="https://in.finance.yahoo.com/most-active/" target="_blank" class="fa fa-yahoo fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
-          </li>
-          
-        </ul>
-      </div>
-    </nav>
-  </header>
 
-  <div style="width: 100%; overflow: hidden;">
-     <main class="valign-wrapper" style="width: 750px; float: left;">
+
+  <div style="width: 100%; overflow: hidden; margin-top:80px; ">
+     <main class="valign-wrapper" style="width: 500px; float: left;">
     <span class="container grey-text text-lighten-1 ">
 
       <p class="flow-text">Welcome to</p>
@@ -42,6 +33,11 @@
         <div id="text"></div><div id="cursor"></div>
       </div>
       <br>
+      <br>
+      <div><a href="{{url_for('index')}}" class="btn" >START</a>
+   
+      </div>
+      <br>
        
      
 
@@ -50,9 +46,10 @@
   </main>
 
  
-    <div style="margin-left: 800px;"><a href="{{url_for('index')}}"><img src="{{url_for('static',filename='splash.jpeg')}}" style="width: 600px; height: 550px;"></a>
+    <div style="margin-left: 800px; margin-right:40px;"><a href="{{url_for('index')}}"><img src="{{url_for('static',filename='bot.jpg')}}" style="width: 600px; height: 550px;"></a>
     
     </div>
+    
     
     
 
@@ -61,10 +58,12 @@
  
 
   </div>
+  
+
  <!-- <form action="/index">
     <button name="btn" type="submit" onclick=click() style="z-index:-1 position:relative">Click Me!</button>
   </form>-->
-  <a href="{{url_for('index')}}" target="_self" class="fa fa-yahoo fa-2x waves-effect waves-light"><span class="icon-text"></span></a>
+  
 
 
   <footer class="page-footer deep-purple darken-3" style="text-align: center;">
