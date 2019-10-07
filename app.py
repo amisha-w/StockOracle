@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template,make_response
 import os
 import dialogflow
 import requests
@@ -33,7 +33,7 @@ def get_movie_detail():
     try:
         ticker = data['queryResult']['parameters']['tickers']
         print("ticker is:",ticker)
-        result = predictData(ticker,2)
+        result = predictData(ticker,5)
         resultDict = {'index':result}
         #resultDict = json.dumps(resultDict)
         print("resultdict:",resultDict)
