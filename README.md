@@ -22,16 +22,42 @@ The purpose of technical analysis is to help the investor make a more financiall
   <img src="./assets/1.gif" width="500px"></img>
   <br>
    <img src="./assets/2.gif" width="500px"></img>
-
+</div>
+-----------------------------------------------
   
 ## Features
 
-<ul>
-  <li> Chatbot that dynamically fetches current stock prices based on company and predicts the prices 
-  <li> Linear Regression to predict prices.
-</ul>
-
-# Dependencies
+- [x] Chatbot for User friendly interaction.
+- [x] Linear Regression to predict future prices.
+-----------------------------------------------
+## Future Enhancements
+- [ ] Improve responsiveness.
+- [ ] PWA with integration of Voice-recognition.
+- [ ] Adding Google Assistant.
+-----------------------------------------------
+## Installations
+- Install Dependencies:
+    
 ``` pip3 install -r requirements.txt ```
+- Start Server:
 
-https://8e5057de.ngrok.io8F
+``` python3 app.py ```
+-----------------------------------------------
+## Contributions
+ We're are open to `enhancements` & `bug-fixes` :smile: 
+-----------------------------------------------
+## Note 
+This project is a part was done under `under 24-hours` from scratch with no preparation
+-----------------------------------------------
+## Contributors
+- [Gayatri Srinivasan](https://github.com/gayatri-01)
+- [@Amisha Waghela](https://github.com/amisha-w)
+
+-----------------------------------------------
+This project was a part of KJSCE-HACK'19 - [View Submission](https://devfolio.co/submissions/stockoracle-bot)
+
+
+ 
+
+
+
