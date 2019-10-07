@@ -60,7 +60,7 @@ The purpose of technical analysis is to help the investor make a more financiall
 
 ## Note 
 
-This project is a part was done under `under 24-hours` from scratch with no preparation
+This project was done under `under 24-hours` from scratch with no preparation
 
 -----------------------------------------------
 
