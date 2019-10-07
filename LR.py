@@ -80,12 +80,14 @@ def predictData(stock,days):
     # Print linear regression model predictions for the next '30' days
     lr_prediction = lr.predict(x_forecast)
     print(lr_prediction[0])
-    predictResponse = "The predicted price for upcoming {} days is:".format(days)
+    val=si.get_live_price(stock)
+    #print("Current Price of {} is {}".format(stock,val))
+    predictResponse = "The Current Price of {} is ${}  <br> The predicted price for upcoming {} days is:".format(stock,val,days)
     for elements in lr_prediction:
-        predictResponse += "<br> ${0:.3f} <br>".format(elements)
+        predictResponse += "<br> ${0:.3f}".format(elements)
         
     lr_confidence = lr_confidence *100
-    predictResponse += "<br> I'm {0:.3f}% sure about the prices".format(lr_confidence)
+    #predictResponse += "<br>I'm {0:.3f}% sure about the prices".format(lr_confidence)
     print(predictResponse)
         
     
@@ -97,15 +99,14 @@ def predictData(stock,days):
     # svm_prediction = svr_rbf.predict(x_forecast)
     # print("svm ans")
     # print(svm_prediction)
-    val=si.get_live_price(stock)
-    print("Current Price of {} is {}".format(stock,val))
+   
     
    
 
 
 
  
-predictData('CLF',2)
+predictData('CLF',5)
 #getStocks(5)
 
 
