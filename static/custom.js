@@ -1,10 +1,10 @@
 function submit_message(message) {
-    $.post("/send_message", { message: message, socketId: pusher.connection.socket_id }, handle_response);
-
+    $.post("/send_message", { message: message}, handle_response);
+//socketId: pusher.connection.socket_id
     function handle_response(data) {
         // append the bot repsonse to the div
         $('.chat-container').append(`
-            <div class="chat-message col-md-5  bot-message">
+            <div class="chat-message col-sm-5  bot-message">
                 ${data.message}
             </div>
       `).animate({ scrollTop: $('.chat-container').prop("scrollHeight") }, 500);
@@ -24,7 +24,7 @@ $('#target').on('submit', function (e) {
     }
 
     $('.chat-container').append(`
-        <div class="chat-message col-md-5 offset-md-7 human-message">
+        <div class="chat-message col-sm-5 offset-md-7 human-message">
             ${input_message}
         </div>
     `).animate({ scrollTop: $('.chat-container').prop("scrollHeight") }, 500);
@@ -32,7 +32,7 @@ $('#target').on('submit', function (e) {
 
     // loading
     $('.chat-container').append(`
-        <div class="chat-message text-center col-md-2  bot-message" id="loading">
+        <div class="chat-message text-center col-sm-2  bot-message" id="loading">
             <b>...</b>
         </div>
     `).animate({ scrollTop: $('.chat-container').prop("scrollHeight") }, 500);
@@ -66,7 +66,7 @@ channel.bind('new_message', function (data) {
 
     // Append bot message
     $('.chat-container').append(`
-        <div class="chat-message col-md-5  bot-message">
+        <div class="chat-message col-sm-5  bot-message">
             ${data.bot_message}
         </div>
     `).animate({ scrollTop: $('.chat-container').prop("scrollHeight") }, 500);
