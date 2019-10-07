@@ -1,4 +1,5 @@
 <div align="center">
+  <img src="./assets/bot.gif" width="200px"></img>
   
  # StockOracle Bot
  
@@ -16,6 +17,13 @@
 The purpose of technical analysis is to help the investor make a more financially sound investment decision. The price is the key to success in stock market investment. The supply and demand of stocks all depend upon technical analysis. By evaluating the history of stock prices, you get a future reading of what a particular stock would be priced at.
 
 ---------
+## Webapp
+<div align="center">
+  <img src="./assets/1.gif" width="500px"></img>
+  <br>
+   <img src="./assets/2.gif" width="500px"></img>
+
+  
 ## Features
 
 <ul>
