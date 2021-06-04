@@ -18,7 +18,7 @@ cupshelpers==1.0
 defer==1.0.6
 dialogflow==0.4.0
 distro-info===0.18ubuntu0.18.04.1
-Django==2.2.6
+Django==2.2.21
 Flask==1.1.1
 Flask-BabelEx==0.9.3
 Flask-Bcrypt==0.7.1
